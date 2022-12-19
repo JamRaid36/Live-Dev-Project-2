@@ -80,7 +80,7 @@ For this story I had to create and style the CRUD Create and Edit pages for a th
 
 ### Style CRUD INDEX Page
 For this story I was tasked with creating an index page that would display all created blogs in a sleak looking vertical card format.
-![Index Page](Images/Index Blogpost Cards.png)
+![Index Blogpost Page](Images/Index Blogpost Cards.png)
 ```
 
 
