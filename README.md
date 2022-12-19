@@ -1,14 +1,14 @@
 # Live Project #2
 ## Introduction
-I recently did my second live project with the Tech Academy for the Software Developer Bootcamp. I was given the opportunity to do a two week sprint with a team of instructors and peers. We various Python and Django features. Within the scope of this project we created databases to keep track of data, implemented CRUD functionality and interacted with APIs to retrieve and save data. This project was built using the ASP .NET MVC and Entity Framework. This was my second opportunity to work with a tech team in a profesional environment and I really enjoyed the experience. I was able to complete both [front end stories](#front-end-stories) and [back end stories](#back-end-stories) as well as gain experience working with some valuable project management [skills](#other-skills-learned) that I'm sure will come in handy in the future. Below are a few of the stories I completed during this project.
+I recently did my second live project with the Tech Academy for the Software Developer Bootcamp. I was given the opportunity to do a two week sprint with a team of instructors and peers. This project was built using the ASP .NET MVC and Entity Framework. This was my second opportunity to work with a tech team in a profesional environment and I really enjoyed the experience. I was able to complete both [front end stories](#front-end-stories) and [back end stories](#back-end-stories) utilizing C# razor syntax, HTML, CSS, Javascript, JQUERY, AJAX and BOOTSTRAP as well as gaining experience in some valuable project management [skills](#other-skills-learned) that I'm sure will come in handy in the future. Below are a few of the stories I completed during this project.
 
 ## Front End Stories
-  - [Style CRUD Create and Edit Pages](#Style-CRUD-Create-and Edit-Pages)
-  - [Style CRUD INDEX Page](#Style-CRUD-Index-Page)
+  - [Style CRUD Create and Edit Pages](#style-crud-create-and-edit-pages)
+  - [Style CRUD Index Page](#style-crud-index-page)
 
 ### Style CRUD Create and Edit Pages
-For this story I had to stylize CRUD Create and Edit pages for a theatre companies blogging segment. These pages allow blog writers to create new and interesting content to put on display for patrons of their company.
-![CRUDCreateForm](C:\Users\guita\Documents\GitHub\Live-Project-2\Images\CreateForm.png)
+For this story I had to style the CRUD Create and Edit pages for a theatre companies blogging section. These pages allow blog writers to create new and interesting content to put on display for patrons of their company.
+![CRUDCreateForm](Images/CreateForm.png)
 
 ### Style CRUD INDEX Page
 
