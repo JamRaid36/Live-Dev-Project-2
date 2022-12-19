@@ -7,89 +7,84 @@ I recently did my second live project with the Tech Academy for the Software Dev
   - [Style CRUD Index Page](#style-crud-index-page)
 
 ### Style CRUD Create and Edit Pages
-For this story I had to style the CRUD Create and Edit pages for a theatre companies blogging section. These pages allow blog writers to create new and interesting content to put on display for patrons of their company.
+For this story I had to create and style the CRUD Create and Edit pages for a theatre companies blogging section. These pages allow blog writers to create new and interesting content to put on display for patrons of their company.
 ![CRUDCreateForm](Images/CreateForm.png)
 
-### Style CRUD INDEX Page
-
 ```
-/* Background and Image Styling */
-
-.bg_img {
-    background-color: lightblue;
-    background-image: url('/static/images/sitcoms_image.jpg');
-    background-size: cover;
-    background-attachment:fixed;
-    background-position: center;
-    position: relative;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-/* End Background and Image Styling */
-/* Form Styling */
-
-.admin_panel {
-    position: relative;
-    top: 1px;
-    margin: 0 auto;
-    width: 50%;
-    height: 50%;
-    background-color: #fffaf4;
-	border: 1px solid #d6d6d6;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-	transition: all 0.3s ease-in-out;
-	border-radius: 10px;
-    transition: 0.3s;
+.BlogPosts-Create--submitBtn {
+    min-width: 110px;
+    border-radius: 12px;
+    background-color: var(--secondary-color);
+    transition: transform .5s;
+    margin: 0;
+    position: absolute;
+    top: 0%;
+    margin-left: 125px;
+    -ms-transform: translate(-50% -50%);
+    transform: translate(-50% -50%);
 }
 
-.admin_panel:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-	transition: opacity 0.3s ease-in-out;
+.BlogPosts-Create--submitBtn:hover {
+    transform: scale(0.95);
 }
 
-.center {/* centers table on read page */
-  margin-left: auto;
-  margin-right: auto;
+.BlogPosts-Create--backtolistBtn {
+    min-width: 110px;
+    border-radius: 12px;
+    background-color: var(--main-color--light);
+    transition: transform .5s;
+    margin: 0;
+    position: absolute;
+    top: 0%;
+    margin-right: 300px;
+    -ms-transform: translate(-50% -50%);
+    transform: translate(-50% -50%);
 }
 
-th {/* centers table on read page */
-    text-align: left;
-}
-
-table {/* adds space between columns */
-  border-collapse: separate;
-  border-spacing: 30px 30px;
-}
-input, textarea {
-    width: 100%;
-    margin: 1% 0 0 0;
-    padding: 1% 0 2% 1%;
-    line-height: 18px;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 2px solid silver;
-}
-label {
-	display: inline-block;
-    width: 95%;
-    text-align: left;
-    margin: 1% 0 0 0;
-    color: black;
-    line-height: 18px;
-    font-size: 20px;
-}
-
-/* form item container */
-.frmObject_container {
-	display: block;
-    width: 80%;
-    margin: 0 auto;
-    padding: 0;
+.BlogPosts-Create--backtolistBtn a {
+    text-decoration: none;
+    color: var(--light-color);
     text-align: center;
 }
-/* End Form Styling */
+
+.BlogPosts-Create--backtolistBtn:hover {
+    transform: scale(0.95);
+}
+
+.BlogPosts-Create--inputs:focus {
+    border: 4px solid var(--main-color--light);
+    outline: none;
+    box-shadow: none;
+    background-color: antiquewhite;
+}
+
+.BlogPosts-Create--inputs {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.BlogPosts-Create--FormContainer {
+
+    padding-bottom: 50px ;
+    background-color: var(--secondary-color--dark); 
+}
+
+.BlogPosts-Create--btnContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+/*End BlogPosts Edit and Create Page Styling*/
+
+```
+
+### Style CRUD INDEX Page
+For this story I was tasked with creating an index page that would display all created blogs in a sleak looking vertical card format.
+![Index Page](Images/Index Blogpost Cards.png)
+```
+
+
+
 ```
 Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills Learned](#other-skills-learned), [Page Top](#introduction)
 
