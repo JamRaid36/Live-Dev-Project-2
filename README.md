@@ -79,73 +79,241 @@ For this story I had to create and style the CRUD Create and Edit pages for a th
 ```
 
 ### Style CRUD INDEX Page
-For this story I was tasked with creating an index page that would display all created blogs in a sleak looking vertical card format.
-![Index Blogpost Page](Images/Index Blogpost Cards.png)
+For this story I was tasked with creating an index page that would display all created blogs in a sleak looking vertical card format utilizing font AWESOME icons and button animation.
+![Index Blogpost Cards.png](https://github.com/JamRaid36/Live-Project-2/blob/b0fb2418842b38dfd2ee41da842c3d7c45fb256c/Images/Index%20Blogpost%20Cards.png)
+
 ```
+/*BlogPosts Index Page Styling*/
 
+.BlogPosts-Index--card {
+    flex-direction: row;
+}
 
+.BlogPosts-Index--cardSpace {
+    margin: 25px;
+}
 
+.BlogPosts-Index--cardImg {
+    width: 50%;
+}
+
+.BlogPosts-Index--cardTextAuthor {
+    font-weight: 700;
+    font-size: 10px;
+    margin: -4px;
+    margin-left: -2px;
+}
+
+.BlogPosts-Index--cardTextPosted {
+    font-size: 10px;
+    margin-left: -2px;
+  
+}
+.BlogPosts-Index--Btn {
+    font-weight: 600;
+    color: var(--light-color);
+    background-color: grey;
+}
+
+.BlogPosts-Index--Btn:hover {
+    background-color: dimgrey;
+}
+
+.BlogPosts-Index--creatNewBtn {
+    font-weight: 600;
+    color: var(--light-color);
+    background-color: var(--main-color--light);
+}
+
+.BlogPosts-Index--creatNewBtn:hover {
+    background-color: var(--main-color);     
+}
+
+.BlogPosts-Index--deleteBtn {
+    font-weight: 600;
+    color: var(--light-color);
+    background-color: var(--main-color--light);
+    margin-left: 20px;
+}
+
+.BlogPosts-Index--deleteBtn:hover {
+    background-color: var(--main-color);
+}
+
+.BlogPosts-Index--bottomSpace {
+    margin-bottom: -10px;
+}
+
+.BlogPosts-Index--deleteSuccessMsgContainer {
+    background-color: black;
+}
+
+.BlogPosts-Index--deleteSuccessMsgBox {
+    background-color: palegreen;
+    border-radius: 25px;
+
+}
+
+.BlogPosts-Index--deleteSuccessMsg {
+    color: darkgreen;
+}
+
+/*End BlogPosts Index Page Styling*/
 ```
 Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills Learned](#other-skills-learned), [Page Top](#introduction)
 
 ## Back End Stories
-  - [Details Page](#details-page)
-  - [Connect to and Parse through API](#connect-to-and-parse-through-api)
-
-### Details Page
-For these stories I was tasked with displaying the description for items I had previosuly added to the database and then also being able to edit the data associted ith these items. These are functions I employed to render and enable editing features for the app.
+  - [Model and CRUD Pages](#model-and-crud-pages)
+  - [Create and Style Asynchronus Delete Modal](#create-and-style-asynchronus-delete-modal)
+  
+### Model and CRUD Pages
+For this story I had to create the code fist model and CRUD pages.
 ```
-# Story #4: Details page -----------------------------------------------------------------------------------------------
-
-
-def sitcom_details(request, pk):
-    sitcom = get_object_or_404(Sitcom, pk=pk)
-    content = {'sitcom': sitcom}
-    return render(request, 'Sitcoms/sitcoms_details.html', content)
-
-# Story #5: Edit and Delete Functions ----------------------------------------------------------------------------------
-
-
-def sitcom_update(request, pk):
-    sitcom = get_object_or_404(Sitcom, pk=pk)
-    form = SitcomForm(data=request.POST or None, instance=sitcom)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            return redirect('../../read')
-    content = {'form': form, 'sitcom': sitcom}
-    return render(request, 'Sitcoms/sitcoms_update.html', content)
-```
-### Connect to and Parse through API
-For these two stories I had to find an API that I wanted to use, connect to it and parse through the correct data I wanted to display.
-
-```
-# Story #6-(API Pt 1): Connect to API ----------------------------------------------------------------------------------
-# Story #7-(API Pt 2): Parse through JSON
-
-def sitcom_api(request):
-    url = "https://yahoo-weather5.p.rapidapi.com/weather"
-
-    querystring = {"location": "longview,wa", "format": "json", "u": "f"}
-
-    headers = {
-        "X-RapidAPI-Key": "1ba8d27b19mshd71557ea88643ebp14a569jsnc81e62fac8f7",
-        "X-RapidAPI-Host": "yahoo-weather5.p.rapidapi.com"
+{
+    public class BlogPost
+    {
+        [Key]
+        public int BlogPostID { get; set; }
+        public string Title { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Content { get; set; }
+        public DateTime Posted { get; set; }
+        public string Author { get; set; }
     }
+}
 
-    response = requests.request("GET", url, headers=headers, params=querystring)
+CRUD PAGES
 
-    api_info = json.loads(response.text)
-    temp_int = api_info["current_observation"]["condition"]["temperature"]
-    current_temperature = str(api_info["current_observation"]["condition"]["temperature"]) + ' \N{DEGREE SIGN}F'
-    content = {"current_temperature": current_temperature, "temp_int": temp_int}
-    return render(request, 'Sitcoms/sitcoms_api.html', content)
+ // GET: Blog/BlogPosts
+ public ActionResult Index()
+        {
+            return View(db.BlogPosts.ToList());
+        }
+
+        // GET: Blog/BlogPosts/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BlogPost blogPost = db.BlogPosts.Find(id);
+            if (blogPost == null)
+            {
+                return HttpNotFound();
+            }
+            return View(blogPost);
+        }
+
+        // GET: Blog/BlogPosts/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Blog/BlogPosts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "BlogPostID,Title,Content,Posted,Author")] BlogPost blogPost)
+        {
+            if (ModelState.IsValid)
+            {
+                db.BlogPosts.Add(blogPost);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(blogPost);
+        }
+
+        // GET: Blog/BlogPosts/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BlogPost blogPost = db.BlogPosts.Find(id);
+            if (blogPost == null)
+            {
+                return HttpNotFound();
+            }
+            return View(blogPost);
+        }
+
+        // POST: Blog/BlogPosts/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "BlogPostID,Title,Content,Posted,Author")] BlogPost blogPost)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(blogPost).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(blogPost);
+        }
+
+        // GET: Blog/BlogPosts/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BlogPost blogPost = db.BlogPosts.Find(id);
+            if (blogPost == null)
+            {
+                return HttpNotFound();
+            }
+            return View(blogPost);
+        }
+
+```
+### Create and Style Asynchronus Delete Modal
+For this story I created a modal using Bootstrap as well as writing an JSONResult method in my controller that linked to a javascript method with AJAX allowing me to delete blogposts from both the database and update the front end Index page visual for the user.
+![DeleteModal](https://github.com/JamRaid36/Live-Project-2/blob/ee7c2ac2f9591783ac6b106302c1d0acfef96913/Images/DeleteModal.png)
+
+```
+CONTROLLER METHOD
+
+[HttpPost]
+        public JsonResult DeletePostAsync(int id)
+        {
+            BlogPost blogPost = db.BlogPosts.Find(id);
+            var result = new JsonResult(); //saitsfies method requirements
+            db.BlogPosts.Remove(blogPost); //removes records from database table
+            db.SaveChanges();// saves changes
+            return Json(result); //satisfies method requirements and returns back to javascript method 
+        }
+
+JAVASCRIPT AJAX
+
+// this function gets a the unique id passed to, communicates with the controller through ajax and calls the DeletePostAsync JSONRESULT method
+function DeleteBlogPost(id) {
+    $.ajax({
+        type: "POST",
+        url: "/BlogPosts/DeletePostAsync", //sends unique id and calls controller method
+        data: { id: id },
+    })
+        .done(function () { 
+            $("#BlogPost-" + id).remove();//once this gets hit the post is removed from the users view
+            $("#" + id).fadeIn(500).delay(3000).fadeOut(500); // targets div on index and fades in a message letting the user know a post has been successfully deleted and then fades out.
+        
+         })
+}
+
 ```
 Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills Learned](#other-skills-learned), [Page Top](#introduction)
 ## Other Skills Learned
  - Worked with a team and was able to glean from their work as well as interact with the leads when I hit a snag that I couldn't solve.
- - Learning and utilizing good version control practices through git bash and Pycharm. 
- 	- This enabled me to revert to previous points in my project when needed as well debug without negatively influencing others hard work.
+ - Learning and utilizing good version control practices through Visual Studio.
+ 	- This enabled me to update my team lead as well as refresh my database and the whole project when more current versions were added while working on the project.
  - Due to being in this program while working another job and managing a side business, I was really able to hone my own time management skills which I feel is crucial to any professional career, especially in the tech industry.
 
 Jump to: [Front End Stories](#front-end-stories), [Back End Stories](#back-end-stories), [Other Skills Learned](#other-skills-learned), [Page Top](#introduction)
