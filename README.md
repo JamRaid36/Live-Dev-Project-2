@@ -1,4 +1,4 @@
-# Prosper I.T. Consulting #2
+# Prosper I.T. Consulting Internship #2
 ## Introduction
 I recently did my second live intenship with Prosper I.T. Consulting. I was given the opportunity to do a two week sprint with a team of seasoned Devs and peers. This project was built using the ASP .NET MVC and Entity Framework. This was my second opportunity to work with a tech team in a profesional environment and I really enjoyed the experience. I was able to complete both [front end stories](#front-end-stories) and [back end stories](#back-end-stories) utilizing C# razor syntax, HTML, CSS, Javascript, JQUERY, AJAX and BOOTSTRAP as well as garnering [other skills](#other-skills-learned) in the area of team dynamics and good communication for a successful Dev team. Below are a few of the stories I completed during this project.
 
